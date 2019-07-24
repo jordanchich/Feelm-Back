@@ -8,9 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-
-
-/* GET home page. */
+/* GET Movies page. */
 router.get('/listMovies', function (req, res, next) {
 
   movieModel.find(
