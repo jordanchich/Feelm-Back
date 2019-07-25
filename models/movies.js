@@ -1,5 +1,27 @@
 var mongoose = require('mongoose');
 
+
+
+
+var avecqui = mongoose.Schema({
+    seul: String,
+    enfants: String,
+    compagnon: String,
+    amis: String,
+    famille: String,
+});
+var mood = mongoose.Schema({
+    heureux: String,
+    triste: String,
+    second: String,
+    endormir: String,
+    réfléchir: String,
+    surpris: String,
+    tete: String,
+    evasion: String,
+});
+
+
 var moviesSchema = mongoose.Schema({
     id: Number,
     genres: Array,
@@ -10,8 +32,8 @@ var moviesSchema = mongoose.Schema({
     title: String,
     vote_average: Number,
     vote_count: Number,
-    mood: String,
-    avec_qui: String,
+    mood: [mood],
+    avec_qui: [avecqui],
 });
 
 
