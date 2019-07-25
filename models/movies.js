@@ -11,8 +11,8 @@ var moviesSchema = mongoose.Schema({
     title: String,
     vote_average: Number,
     vote_count: Number,
-    mood: String,
-    avec_qui: String,
+    mood: Array,
+    avec_qui: Array,
     cat: String,
 });
 
