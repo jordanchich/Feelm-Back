@@ -1,3 +1,5 @@
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,6 +11,25 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+passport.use(new FacebookStrategy({
+  clientID: "855362364857152",
+  clientSecret: "9d447e47e1dd31ff4c53bc88ccf3f25e",
+
+  callbackURL: 'https://feelmapp.herokuapp.com//auth/facebook/callback',
+
+  profileFields: ['id', 'first_name', 'last_name', 'email', 'picture'],
+  passReqToCallback: true
+},
+  function (req, accessToken, refreshToken, profile, done) {
+
+    var state = JSON.parse(req.query.state);
+
+    var mergeData = { ...profile._json, redirectUrl: state.redirectUrl };
+
+    return done(null, mergeData);
+  }));
+
+app.use(passport.initialize());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
