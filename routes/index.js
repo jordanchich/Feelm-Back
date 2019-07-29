@@ -9,8 +9,6 @@ router.get('/', function (req, res, next) {
 });
 
 
-
-
 /* GET home page. */
 router.get('/listMovies', function (req, res, next) {
 
