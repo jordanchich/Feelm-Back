@@ -40,7 +40,7 @@ router.get('/auth/facebook/callback',
       + "&lastName=" + req.user.last_name
       + "&email=" + req.user.email
       + "&picture=" + encodeURIComponent(req.user.picture.data.url));
-    UserModel.findOne({
+    userModel.findOne({
       facebookid: req.user.id,
     }, function (err, user) {
       if (!user) {
