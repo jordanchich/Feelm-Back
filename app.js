@@ -12,8 +12,8 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 passport.use(new FacebookStrategy({
-  clientID: "855362364857152",
-  clientSecret: "9d447e47e1dd31ff4c53bc88ccf3f25e",
+  clientID: "2410134769052900",
+  clientSecret: "04c0876273b682c29f9149b3b6a3a1b0",
 
   callbackURL: 'https://feelmapp.herokuapp.com//auth/facebook/callback',
 
