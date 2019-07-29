@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var moviesSchema = mongoose.Schema({
-    firstName : String,
-    lastName : String,
-    email : String,
-    password: String,
-    avatar : String,
+    firstname: String,
+    lastname: String,
+    email: String,
+    picture: String,
+    facebookid: String,
     moviesWhishlist:[
         { 
           movie_id: Number, 
