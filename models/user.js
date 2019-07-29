@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var moviesSchema = mongoose.Schema({
+var userSchema = mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
@@ -45,7 +45,7 @@ var moviesSchema = mongoose.Schema({
 
    });
 
-const moviesModel = mongoose.model('users', moviesSchema);
+const userModel = mongoose.model('users', userSchema);
 
-module.exports = moviesModel;
+module.exports = userModel;
 
