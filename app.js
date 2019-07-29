@@ -15,7 +15,7 @@ passport.use(new FacebookStrategy({
   clientID: "2410134769052900",
   clientSecret: "04c0876273b682c29f9149b3b6a3a1b0",
 
-  callbackURL: 'https://feelmapp.herokuapp.com//auth/facebook/callback',
+  callbackURL: 'https://feelmapp.herokuapp.com/auth/facebook/callback',
 
   profileFields: ['id', 'first_name', 'last_name', 'email', 'picture'],
   passReqToCallback: true

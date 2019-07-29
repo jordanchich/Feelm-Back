@@ -19,23 +19,6 @@ router.get('/listMovies', function (req, res, next) {
     });
 });
 
-router.post('/movies', function (req, res, next) {
-  console.log("req.body", req.body)
-  var jojo = new userModel({
-    firstName: "Youssef",
-    lastName: "Boulhilat",
-    email: "yboulhilat@gmail.com",
-    password: "leboss",
-    avatar: "gitclope",
-  });
-  jojo.save(function (error, movie) {
-    console.log(movie)
-    res.json({ result: true, movie });
-  });
-}
-
-
-)
 
 /* GET facebook auth. */
 router.get('/auth/facebook',
