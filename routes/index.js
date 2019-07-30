@@ -51,6 +51,7 @@ router.post('/upload', function (req, res, next) {
             };
 
             request.post(options, (error, response, body) => {
+              console.log(body)
               if (error) {
 
                 console.log('Error: ', error);
@@ -58,7 +59,7 @@ router.post('/upload', function (req, res, next) {
               }
               let jsonResponse = JSON.parse(body);
               console.log(jsonResponse[0])
-              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.gender);
+              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.smile);
 
             });
             console.log(result, error)

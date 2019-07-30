@@ -19,6 +19,7 @@
     "socket.io": "^2.2.0",
     "uid2": "0.0.3",
     "request": "^2.88.0",
-    "cloudinary": "^1.14.0"
+    "cloudinary": "^1.14.0",
+    "express-fileupload": "^1.1.5"
   }
 }
