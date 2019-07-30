@@ -60,6 +60,17 @@ router.post('/upload', function (req, res, next) {
               console.log(jsonResponse[0])
               console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.smile);
 
+              userModel.findOne({
+                facebookid: req.user.id
+              }, function (err, user) {
+                user.pictures.push({
+                  pictureName: result.original_filename,
+                  pictureUrl: result.secure_url,
+                  smile: jsonResponse[0].faceAttributes.smile,
+                  age: jsonResponse[0].faceAttributes.age,
+                });
+                user.save();
+              });
             });
             console.log(result, error)
           });
@@ -70,6 +81,15 @@ router.post('/upload', function (req, res, next) {
     );
   }
 });
+
+router.get('/library', function (req, res, next) {
+  userModel.findOne({
+    facebookid: req.user.id
+  }, function (err, user) {
+    console.log(user)
+    res.json({ result: true, user });
+  });
+})
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });

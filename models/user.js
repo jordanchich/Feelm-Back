@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var pictureSchema = mongoose.Schema({
     pictureName: String,
     pictureUrl: String,
-    gender: String,
+    smile: String,
     age: String,
 
 });
