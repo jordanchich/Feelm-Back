@@ -36,7 +36,7 @@ router.post('/upload', function (req, res, next) {
             const params = {
               'returnFaceId': 'true',
               'returnFaceLandmarks': 'false',
-              'returnFaceAttributes': 'age,smile'
+              'returnFaceAttributes': 'age,smile,emotion'
             };
 
             const options = {
@@ -58,17 +58,20 @@ router.post('/upload', function (req, res, next) {
               }
               let jsonResponse = JSON.parse(body);
               console.log(jsonResponse[0])
-              console.log('jsonResponse: ===========', jsonResponse);
-
+              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.emotion.happiness);
+              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.emotion.sadness);
+              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.emotion.surprise);
               userModel.findOne({
                 _id: '5d39ad5db95aac8babb552c3'
               }, function (err, user) {
                 user.pictures.push({
-                  
                   pictureName: result.original_filename,
                   pictureUrl: result.secure_url,
                   smile: jsonResponse[0].faceAttributes.smile,
                   age: jsonResponse[0].faceAttributes.age,
+                  heureux: jsonResponse[0].faceAttributes.emotion.happiness,
+                  triste: jsonResponse[0].faceAttributes.emotion.sadness,
+                  surpris: jsonResponse[0].faceAttributes.emotion.surprise,
                 });
                 user.save();
               });

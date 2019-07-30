@@ -4,6 +4,9 @@ var pictureSchema = mongoose.Schema({
     pictureUrl: String,
     smile: Number,
     age: String,
+    heureux: Number,
+    triste: Number,
+    surpris: Number,
 
 });
 var userSchema = mongoose.Schema({
