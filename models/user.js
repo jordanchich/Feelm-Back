@@ -1,11 +1,18 @@
 var mongoose = require('mongoose');
+var pictureSchema = mongoose.Schema({
+    pictureName: String,
+    pictureUrl: String,
+    gender: String,
+    age: String,
 
+});
 var userSchema = mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
     picture: String,
     facebookid: String,
+    pictures: [pictureSchema],
     moviesWhishlist:[
         { 
           movie_id: Number, 

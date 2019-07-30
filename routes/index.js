@@ -2,8 +2,73 @@ var express = require('express');
 var router = express.Router();
 var moviesModel = require('../models/movies');
 var userModel = require('../models/user');
-var apiKey = '15322da9c8b22e5a5253028075983b8f';
 var passport = require('passport');
+cloudinary.config({
+  cloud_name: 'dqmzk3rbf',
+  api_key: '722637443465419',
+  api_secret: 'MFnxs2Z0176dOMUl6Vp_EGEpswc'
+});
+
+
+const request = require('request');
+const subscriptionKey = 'd63ea5ed12bc449e826843e3d0dff398';
+const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect';
+
+router.post('/upload', function (req, res, next) {
+
+  var extention;
+  if (req.files.picture.mimetype == "image/jpeg") {
+    extention = 'jpg';
+  } else if (req.files.picture.mimetype == "image/png") {
+    extention = 'png';
+  }
+
+  if (extention) {
+    req.files.picture.mv('./public/images/' + req.files.picture.name + '.' + extention,
+
+      function (err, result) {
+        if (err) {
+          res.json({ result: false, message: err });
+        } else {
+          cloudinary.uploader.upload('./public/images/' + req.files.picture.name + '.' + extention, { quality: 50 }, function (error, result) {
+            console.log(result)
+            const imageUrl = result.secure_url;
+            const params = {
+              'returnFaceId': 'true',
+              'returnFaceLandmarks': 'false',
+              'returnFaceAttributes': 'age,smile'
+            };
+
+            const options = {
+              uri: uriBase,
+              qs: params,
+              body: '{"url": ' + '"' + imageUrl + '"}',
+              headers: {
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': subscriptionKey
+              }
+            };
+
+            request.post(options, (error, response, body) => {
+              if (error) {
+
+                console.log('Error: ', error);
+                return;
+              }
+              let jsonResponse = JSON.parse(body);
+              console.log(jsonResponse[0])
+              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.gender);
+
+            });
+            console.log(result, error)
+          });
+
+        }
+      }
+
+    );
+  }
+});
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
