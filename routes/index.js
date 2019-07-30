@@ -10,7 +10,6 @@ cloudinary.config({
   api_secret: 'MFnxs2Z0176dOMUl6Vp_EGEpswc'
 });
 
-
 const request = require('request');
 const subscriptionKey = 'd63ea5ed12bc449e826843e3d0dff398';
 const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect';
