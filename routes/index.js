@@ -58,7 +58,7 @@ router.post('/upload', function (req, res, next) {
               }
               let jsonResponse = JSON.parse(body);
               console.log(jsonResponse[0])
-              console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.smile);
+              console.log('jsonResponse: ===========', jsonResponse);
 
               userModel.findOne({
                 _id: '5d39ad5db95aac8babb552c3'
