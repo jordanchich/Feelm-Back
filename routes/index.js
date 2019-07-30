@@ -61,7 +61,7 @@ router.post('/upload', function (req, res, next) {
               console.log('jsonResponse: ===========', jsonResponse[0].faceAttributes.smile);
 
               userModel.findOne({
-                facebookid: req.user.id
+                _id: '5d39ad5db95aac8babb552c3'
               }, function (err, user) {
                 user.pictures.push({
                   pictureName: result.original_filename,
@@ -84,7 +84,7 @@ router.post('/upload', function (req, res, next) {
 
 router.get('/library', function (req, res, next) {
   userModel.findOne({
-    facebookid: req.user.id
+    _id: '5d39ad5db95aac8babb552c3'
   }, function (err, user) {
     console.log(user)
     res.json({ result: true, user });
