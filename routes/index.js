@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moviesModel = require('../models/movies');
 var userModel = require('../models/user');
+var cloudinary = require('cloudinary').v2;
 var passport = require('passport');
 cloudinary.config({
   cloud_name: 'dqmzk3rbf',
