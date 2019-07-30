@@ -63,7 +63,8 @@ router.post('/upload', function (req, res, next) {
               userModel.findOne({
                 _id: '5d39ad5db95aac8babb552c3'
               }, function (err, user) {
-                  user.pictures.updateOne({
+                user.pictures.push({
+                  faceId: result.faceId,
                   pictureName: result.original_filename,
                   pictureUrl: result.secure_url,
                   smile: jsonResponse[0].faceAttributes.smile,
