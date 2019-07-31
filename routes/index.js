@@ -16,16 +16,16 @@ const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/det
 
 router.post('/upload', function (req, res, next) {
 
-  req.files.avatar.mv('./public/images/avatar.jpg',
+  req.files.avatar.mv('../public/images/avatar.jpg',
 
       function (err, result) {
         if (err) {
           res.json({ result: false, message: err });
         } else {
-            cloudinary.uploader.upload("./public/images/avatar.jpg", { quality: 50 }, function (error, result) {
+          cloudinary.uploader.upload("../public/images/avatar.jpg", { quality: 50 }, function (error, result) {
             console.log(result)
             
-              const imageUrl = 'http://feelmapp.herokuapp.com/images/avatar.jpg';
+            const imageUrl = result.secure_url;
             const params = {
               'returnFaceId': 'true',
               'returnFaceLandmarks': 'false',
