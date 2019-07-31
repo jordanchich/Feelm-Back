@@ -74,9 +74,10 @@ router.post('/upload', function (req, res, next) {
                 });
                 user.save();
               });
+              res.json({ jsonResponse });
             });
             console.log(result, error)
-            res.json({ result });
+            
           });
 
         }
