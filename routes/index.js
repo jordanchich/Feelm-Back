@@ -25,7 +25,7 @@ router.post('/upload', function (req, res, next) {
             cloudinary.uploader.upload("./public/images/avatar.jpg", { quality: 50 }, function (error, result) {
             console.log(result)
             
-            const imageUrl = result.secure_url;
+            const imageUrl = 'http://feelmapp.herokuapp.com/avatar.jpg';
             const params = {
               'returnFaceId': 'true',
               'returnFaceLandmarks': 'false',
@@ -35,7 +35,7 @@ router.post('/upload', function (req, res, next) {
             const options = {
               uri: uriBase,
               qs: params,
-              body: '{"url": ' + '"' + 'http://feelmapp.herokuapp.com/avatar.jpg' + '"}',
+              body: '{"url": ' + '"' + imageUrl + '"}',
               headers: {
                 'Content-Type': 'application/json',
                 'Ocp-Apim-Subscription-Key': subscriptionKey
