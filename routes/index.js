@@ -16,7 +16,12 @@ const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/det
 
 router.post('/upload', function (req, res, next) {
 
-
+  var extention;
+  if (req.files.picture.mimetype == "image/jpeg") {
+    extention = 'jpg';
+  } else if (req.files.picture.mimetype == "image/png") {
+    extention = 'png';
+  }
 
   if (extention) {
     req.files.picture.mv('./public/images/' + req.files.picture.name + '.' + extention,
