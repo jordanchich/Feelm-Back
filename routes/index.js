@@ -25,7 +25,7 @@ router.post('/upload', function (req, res, next) {
             cloudinary.uploader.upload("./public/images/avatar.jpg", { quality: 50 }, function (error, result) {
             console.log(result)
             
-            const imageUrl = 'http://feelmapp.herokuapp.com/avatar.jpg';
+              const imageUrl = 'http://feelmapp.herokuapp.com/images/avatar.jpg';
             const params = {
               'returnFaceId': 'true',
               'returnFaceLandmarks': 'false',
