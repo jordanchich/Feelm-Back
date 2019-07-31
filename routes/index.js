@@ -16,22 +16,15 @@ const uriBase = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/det
 
 router.post('/upload', function (req, res, next) {
 
-  var extention;
-  if (req.files.picture.mimetype == "image/jpeg") {
-    extention = 'jpg';
-  } else if (req.files.picture.mimetype == "image/png") {
-    extention = 'png';
-  }
-
-  if (extention) {
-    req.files.picture.mv('./public/images/' + req.files.picture.name + '.' + extention,
+  req.files.avatar.mv('./public/images/avatar.jpg',
 
       function (err, result) {
         if (err) {
           res.json({ result: false, message: err });
         } else {
-          cloudinary.uploader.upload('./public/images/' + req.files.picture.name + '.' + extention, { quality: 50 }, function (error, result) {
+            cloudinary.uploader.upload("./public/images/avatar.jpg", { quality: 50 }, function (error, result) {
             console.log(result)
+            
             const imageUrl = result.secure_url;
             const params = {
               'returnFaceId': 'true',
@@ -42,7 +35,7 @@ router.post('/upload', function (req, res, next) {
             const options = {
               uri: uriBase,
               qs: params,
-              body: '{"url": ' + '"' + imageUrl + '"}',
+              body: '{"url": ' + '"' + 'http://feelmapp.herokuapp.com/avatar.jpg' + '"}',
               headers: {
                 'Content-Type': 'application/json',
                 'Ocp-Apim-Subscription-Key': subscriptionKey
@@ -84,7 +77,7 @@ router.post('/upload', function (req, res, next) {
 
     );
   }
-});
+);
 
 router.get('/library', function (req, res, next) {
   userModel.findOne({
