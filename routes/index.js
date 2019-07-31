@@ -48,7 +48,6 @@ router.post('/upload', function (req, res, next) {
                 'Ocp-Apim-Subscription-Key': subscriptionKey
               }
             };
-
             request.post(options, (error, response, body) => {
               console.log(body)
               if (error) {
