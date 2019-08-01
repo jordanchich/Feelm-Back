@@ -103,15 +103,7 @@ router.get('/match', function (req, res, next) {
       res.json({ result: true, userMatch });
     });
 });
-router.get('/setUser', function (req, res, next) {
 
-  userModel.findOne(
-    { facebookid: req.user.id },
-    function (err, setUser) {
-      console.log(setUser);
-      res.json({ result: true, setUser });
-    });
-});
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -151,8 +143,6 @@ router.get('/auth/facebook/callback',
     userModel.findOne({
       facebookid: req.user.id,
     }, function (err, user) {
-        console.log('@@@@@@@@@@', user)
-        
       if (!user) {
         var newUser = new userModel({
           firstname: req.user.first_name,
@@ -163,7 +153,6 @@ router.get('/auth/facebook/callback',
         });
         newUser.save(
           function (err, user) {
-            console.log('iiiiiiiiiiiiii',user)
             res.json({ result: true, user });
           });
       }
