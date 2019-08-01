@@ -152,7 +152,7 @@ router.get('/auth/facebook/callback',
       facebookid: req.user.id,
     }, function (err, user) {
         console.log('@@@@@@@@@@', user)
-        res.json({ result: true, user });
+        
       if (!user) {
         var newUser = new userModel({
           firstname: req.user.first_name,
