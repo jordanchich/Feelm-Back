@@ -95,6 +95,15 @@ router.get('/library', function (req, res, next) {
     res.json({ result: true, user });
   });
 })
+
+router.get('/match', function (req, res, next) {
+
+  userModel.find(
+    function (err, userMatch) {
+      res.json({ result: true, userMatch });
+    });
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
