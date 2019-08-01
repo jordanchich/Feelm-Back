@@ -87,12 +87,12 @@ router.post('/upload', function (req, res, next) {
   }
 });
 
-router.get('/library', function (req, res, next) {
+router.get('/userSearch', function (req, res, next) {
   userModel.findOne({
-    _id: '5d39ad5db95aac8babb552c3'
-  }, function (err, user) {
-    console.log(user)
-    res.json({ result: true, user });
+    facebookid: req.query.facebookid
+  }, function (err, userExist) {
+      console.log(userExist)
+      res.json({ result: true, userExist });
   });
 })
 
