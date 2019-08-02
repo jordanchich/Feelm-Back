@@ -11,6 +11,8 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
 
+const bodyParser = require('body-parser');
+const socketio   = require('socket.io');
 passport.use(new FacebookStrategy({
   clientID: "2410134769052900",
   clientSecret: "04c0876273b682c29f9149b3b6a3a1b0",
@@ -28,7 +30,12 @@ passport.use(new FacebookStrategy({
 
     return done(null, mergeData);
   }));
+var io = require('socket.io')(server);
 
+io.on('sendMessage', function (message) {
+  console.log('a user connected');
+  socket.emit('sendMessage', message);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
